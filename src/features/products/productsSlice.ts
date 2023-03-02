@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ProductType } from "../../services/api";
+import { FilterType, ProductType } from "../../services/api";
 
 export interface ProductsState {
-  filters: unknown;
+  filters: FilterType[];
+  appliedFilters: string[];
   products: ProductType[];
   sort: number;
   pageNumber: number;
@@ -12,8 +13,9 @@ export interface ProductsState {
 
 const initialState: ProductsState = {
   sort: 1,
-  pageNumber: 0,
+  pageNumber: 1,
   filters: [],
+  appliedFilters: [],
   products: [],
   totalProducts: 0,
 };
@@ -22,7 +24,7 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setFilters: (state, action: PayloadAction<unknown>) => {
+    setFilters: (state, action: PayloadAction<FilterType[]>) => {
       state.filters = action.payload;
     },
     setProducts: (state, action: PayloadAction<ProductType[]>) => {
@@ -32,8 +34,17 @@ export const productsSlice = createSlice({
     setTotalProducts: (state, action: PayloadAction<number>) => {
       state.totalProducts = action.payload;
     },
+    addFilter: (state, action: PayloadAction<string>) => {
+      state.appliedFilters.push(action.payload);
+    },
+    removeFilter: (state, action: PayloadAction<string>) => {
+      state.appliedFilters = state.appliedFilters.filter(
+        (filter) => filter !== action.payload
+      );
+    },
     resetFilters: (state) => {
-      state.pageNumber = 0;
+      state.pageNumber = 1;
+      state.appliedFilters = [];
     },
   },
 });

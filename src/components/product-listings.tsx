@@ -8,8 +8,8 @@ export const ProductListings = () => {
 
   return (
     <div className={css.productListings}>
-      {products?.map((product) => (
-        <Product product={product}></Product>
+      {products?.map((product, key) => (
+        <Product key={key} product={product}></Product>
       ))}
     </div>
   );

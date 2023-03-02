@@ -1,6 +1,13 @@
 import { API_KEY, API_URL, SIZE } from "../consts";
 import { ProductsState } from "../features/products/productsSlice";
 
+export type ProductAncestorsType = {
+  slug: string;
+  externalId: string;
+  name: string;
+  depth: number;
+};
+
 export type ProductType = {
   id: string;
   legacyId: string;
@@ -54,14 +61,7 @@ export type ProductType = {
     slug: string;
     name: string;
     isDefault: boolean;
-    ancestors: [
-      {
-        slug: string;
-        externalId: string;
-        name: string;
-        depth: number;
-      }
-    ];
+    ancestors: ProductAncestorsType[];
   };
   brand: {
     externalId: string;
@@ -78,6 +78,25 @@ export type ProductType = {
     };
   };
   score: number;
+};
+
+export type FilterOptionsType = {
+  identifier: string;
+  value: {
+    gte: number;
+    lte: number;
+  } | string;
+  displayValue: string;
+  productCount: number;
+  priority: number;
+};
+
+export type FilterType = {
+  identifier: string;
+  displayName: string;
+  priority: number;
+  options: FilterOptionsType[];
+  facetType: number;
 };
 
 export const getProducts = async ({

@@ -1,0 +1,17 @@
+.filterContainer {
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.filterTitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filterOptionContainer {
+  display: flex;
+  justify-content: space-between;
+}
