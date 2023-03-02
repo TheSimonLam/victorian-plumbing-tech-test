@@ -8,4 +8,5 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  overflow-y: scroll;
 }

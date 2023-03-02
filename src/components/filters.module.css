@@ -1,7 +1,8 @@
 .filtersContainer {
-  flex-basis: 15em;
+  flex-basis: 20em;
   margin: 10px;
   background-color: white;
   padding: 10px;
   border-radius: 10px;
+  overflow-y: scroll;
 }
