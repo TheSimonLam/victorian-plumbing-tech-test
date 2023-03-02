@@ -82,10 +82,12 @@ export type ProductType = {
 
 export type FilterOptionsType = {
   identifier: string;
-  value: {
-    gte: number;
-    lte: number;
-  } | string;
+  value:
+    | {
+        gte: number;
+        lte: number;
+      }
+    | string;
   displayValue: string;
   productCount: number;
   priority: number;
@@ -102,6 +104,7 @@ export type FilterType = {
 export const getProducts = async ({
   pageNumber = 0,
   sort = 1,
+  appliedFilters = {},
 }: Partial<ProductsState>) => {
   const response = await fetch(`${API_URL}?apikey=${API_KEY}`, {
     method: "POST",
@@ -113,6 +116,7 @@ export const getProducts = async ({
       query: "toilets",
       pageNumber,
       sort,
+      facets: appliedFilters,
     }),
   });
   return response.json();

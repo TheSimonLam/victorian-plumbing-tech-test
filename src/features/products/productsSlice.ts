@@ -48,6 +48,10 @@ export const productsSlice = createSlice({
         option: AppliedFilterOptions;
       }>
     ) => {
+      state.pageNumber = 1;
+      state.products = [];
+      state.totalProducts = 0;
+
       const identifier = action?.payload?.filter?.identifier;
       const selectedOption = action?.payload?.option;
       const selectionOptionIdentifier = selectedOption?.identifier;
@@ -78,10 +82,16 @@ export const productsSlice = createSlice({
               const filtersWithRemovedFilter = value.filter(function (el) {
                 return el.identifier !== selectionOptionIdentifier;
               });
-              state.appliedFilters = {
-                ...state.appliedFilters,
-                [identifier]: filtersWithRemovedFilter,
-              };
+
+              // Check to see if the filter category is empty, if so, remove all filtering for the category
+              if (filtersWithRemovedFilter.length !== 0) {
+                state.appliedFilters = {
+                  ...state.appliedFilters,
+                  [identifier]: filtersWithRemovedFilter,
+                };
+              } else {
+                delete state.appliedFilters[identifier]
+              }
             }
           } else {
             state.appliedFilters = {

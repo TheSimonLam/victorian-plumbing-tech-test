@@ -15,7 +15,6 @@ function App() {
       dispatch(setFilters(res?.facets));
       dispatch(setProducts(res?.products));
       dispatch(setTotalProducts(res?.pagination?.total));
-      console.log(res);
     };
     initialLoad();
     // eslint-disable-next-line react-hooks/exhaustive-deps

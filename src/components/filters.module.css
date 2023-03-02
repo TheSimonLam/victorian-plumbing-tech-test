@@ -1,5 +1,5 @@
 .filtersContainer {
-  flex-grow: 1;
+  flex-basis: 15em;
   margin: 10px;
   background-color: white;
   padding: 10px;
