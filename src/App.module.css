@@ -1,0 +1,6 @@
+.appContainer {
+  display: flex;
+  flex-direction: "row";
+  background-color: greenyellow;
+  height: 100vh;
+}
