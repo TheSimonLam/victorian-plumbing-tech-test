@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { Product } from "./product";
 import css from "./product-listings.module.css";
 
-interface IProductListingsProps {
-  info?: any;
-}
+export const ProductListings = () => {
+  const products = useSelector((state: RootState) => state.products.products);
 
-export const ProductListings = ({ info }: IProductListingsProps) => {
-  const [haha, setHaha] = useState<any>([]);
-
-  return <div className={css.productListings}>Hi</div>;
+  return (
+    <div className={css.productListings}>
+      {products?.map((product) => (
+        <Product product={product}></Product>
+      ))}
+    </div>
+  );
 };

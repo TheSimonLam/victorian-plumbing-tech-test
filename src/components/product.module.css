@@ -1,0 +1,10 @@
+.productContainer {
+  width: 300px;
+  height: 360px;
+  object-fit: contain;
+  margin: 10px;
+}
+
+.productPrice {
+  font-weight: bold;
+}
