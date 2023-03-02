@@ -16,22 +16,6 @@ interface IFilterProps {
 
 export const Filter = ({ filter }: IFilterProps) => {
   const dispatch = useDispatch();
-  const appliedFilters = useSelector(
-    (state: RootState) => state.products.appliedFilters
-  );
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      const res = await getProducts({
-        pageNumber: 1,
-        appliedFilters,
-      });
-      dispatch(setProducts(res?.products));
-      dispatch(setTotalProducts(res?.pagination?.total));
-    };
-    loadProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appliedFilters]);
 
   const handleFilterClicked = (
     filter: FilterType,
