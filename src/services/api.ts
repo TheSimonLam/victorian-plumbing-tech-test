@@ -102,7 +102,7 @@ export type FilterType = {
 };
 
 export const getProducts = async ({
-  pageNumber = 0,
+  pageNumber = 1,
   sort = 1,
   appliedFilters = {},
 }: Partial<ProductsState>) => {

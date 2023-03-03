@@ -14,9 +14,20 @@ export const ProductListings = () => {
     (state: RootState) => state.products.appliedFilters
   );
 
-  const loadProducts = async () => {
+  const paginate = async () => {
     const res = await getProducts({
       pageNumber: pageNumber + 1,
+      appliedFilters,
+    });
+
+    dispatch(setProducts(res?.products));
+    dispatch(setTotalProducts(res?.pagination?.total));
+    dispatch(setPageNumber(pageNumber + 1));
+  };
+
+  const applySort = async () => {
+    const res = await getProducts({
+      pageNumber: 1,
       appliedFilters,
     });
 
@@ -29,7 +40,7 @@ export const ProductListings = () => {
     const target = e.target;
     if (target.scrollHeight - target.scrollTop === target.clientHeight) {
       if(totalProducts > products.length){
-        loadProducts()
+        paginate()
       }
     }
   };
