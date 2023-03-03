@@ -18,17 +18,20 @@ export const Filters = () => {
   const filters = useSelector((state: RootState) => state.products.filters);
 
   useEffect(() => {
-    const loadProducts = async () => {
-      const res = await getProducts({
-        pageNumber: 1,
-        appliedFilters,
-      });
+    if (Object.keys(appliedFilters).length > 0) {
+      const loadProducts = async () => {
+        const res = await getProducts({
+          pageNumber: 1,
+          appliedFilters,
+        });
 
-      dispatch(setPageNumber(1));
-      dispatch(setProducts(res?.products));
-      dispatch(setTotalProducts(res?.pagination?.total));
-    };
-    loadProducts();
+        dispatch(setPageNumber(1));
+        dispatch(setProducts(res?.products));
+        dispatch(setTotalProducts(res?.pagination?.total));
+      };
+      loadProducts();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appliedFilters]);
 
