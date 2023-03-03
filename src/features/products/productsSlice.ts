@@ -35,8 +35,10 @@ export const productsSlice = createSlice({
       state.filters = action.payload;
     },
     setProducts: (state, action: PayloadAction<ProductType[]>) => {
-      //TODO: Might need messing with
       state.products.push(...action.payload);
+    },
+    resetProducts: (state) => {
+      state.products = [];
     },
     setTotalProducts: (state, action: PayloadAction<number>) => {
       state.totalProducts = action.payload;
@@ -109,6 +111,9 @@ export const productsSlice = createSlice({
     setPageNumber: (state, action: PayloadAction<number>) => {
       state.pageNumber = action.payload;
     },
+    setSort: (state, action: PayloadAction<number>) => {
+      state.sort = action.payload;
+    },
   },
 });
 
@@ -119,6 +124,8 @@ export const {
   setTotalProducts,
   processFiltering,
   setPageNumber,
+  resetProducts,
+  setSort,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
