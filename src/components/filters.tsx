@@ -28,7 +28,11 @@ export const Filters = () => {
       dispatch(setPageNumber(1));
       dispatch(setProducts(res?.products));
       dispatch(setTotalProducts(res?.pagination?.total));
-      dispatch(setFilters(res?.facets));
+
+      if (filters.length === 0) {
+        // Initilize filters
+        dispatch(setFilters(res?.facets));
+      }
     };
     loadProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
