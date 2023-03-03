@@ -90,7 +90,7 @@ export const productsSlice = createSlice({
                   [identifier]: filtersWithRemovedFilter,
                 };
               } else {
-                delete state.appliedFilters[identifier]
+                delete state.appliedFilters[identifier];
               }
             }
           } else {
@@ -106,6 +106,9 @@ export const productsSlice = createSlice({
       state.pageNumber = 1;
       state.appliedFilters = {};
     },
+    setPageNumber: (state, action: PayloadAction<number>) => {
+      state.pageNumber = action.payload;
+    },
   },
 });
 
@@ -115,6 +118,7 @@ export const {
   resetFilters,
   setTotalProducts,
   processFiltering,
+  setPageNumber,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

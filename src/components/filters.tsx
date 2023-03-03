@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setPageNumber,
   setProducts,
   setTotalProducts,
 } from "../features/products/productsSlice";
@@ -23,6 +24,7 @@ export const Filters = () => {
         appliedFilters,
       });
 
+      dispatch(setPageNumber(1));
       dispatch(setProducts(res?.products));
       dispatch(setTotalProducts(res?.pagination?.total));
     };
