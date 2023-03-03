@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { SORT_OPTIONS } from "../consts";
 import {
   resetProducts,
   setFilters,
@@ -63,28 +64,10 @@ export const Filters = () => {
     setSelectedSort(parseInt(e.target.value));
   };
 
-  const sortOptions = [
-    {
-      label: "Recommended",
-      value: 1,
-    },
-    {
-      label: "Price low to high",
-      value: 2,
-    },
-    {
-      label: "Price high to low",
-      value: 3,
-    },
-    {
-      label: "Largest discount",
-      value: 4,
-    },
-  ];
   return (
     <div className={css.filtersContainer}>
       <select value={selectedSort} onChange={handleSortSelected}>
-        {sortOptions.map((option, key) => (
+        {SORT_OPTIONS.map((option, key) => (
           <option key={key} value={option.value}>
             {option.label}
           </option>
